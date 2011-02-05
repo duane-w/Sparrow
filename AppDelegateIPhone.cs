@@ -33,6 +33,28 @@ namespace SparrowTest
 			
 			return true;
 		}
+		
+		~AppDelegateIPhone ()
+		{
+			SPAudioEngine.Stop ();
+		}
+		
+		public override void OnActivated (UIApplication application)
+		{
+			sparrowView.Start();
+		}
+		
+		public override void OnResignActivation (UIApplication application)
+		{
+			sparrowView.Stop();
+		}
+		
+		public override void ReceiveMemoryWarning (UIApplication application)
+		{
+			SPPoint.PurgePool ();
+			SPRectangle.PurgePool ();
+			SPMatrix.PurgePool ();
+		}
 	}
 }
 

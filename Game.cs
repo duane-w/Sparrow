@@ -41,6 +41,10 @@ namespace SparrowTest
 		        mBackButton.Y = Stage.Height - mBackButton.Height + 1;
 		        mBackButton.AddEventListener (new Selector ("onBackButtonTriggered:"), this, SPEvents.ButtonTriggered); 
 		        AddChild (mBackButton);
+				
+							
+				SPJuggler jug = this.Stage.Juggler;
+				jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
 			}
 		}
 		
