@@ -1,0 +1,7 @@
+MonoTouch bindings for Sparrow
+http://www.sparrow-framework.org/
+http://monotouch.net/
+
+included libSparrow.a is for iPhone simulator
+Extra arguments:
+-gcc_flags "-L${ProjectDir} -lSparrow -all_load -nolink -framework AVFoundation -framework OpenAL"
