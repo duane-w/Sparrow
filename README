@@ -5,3 +5,9 @@ http://monotouch.net/
 included libSparrow.a is for iPhone simulator
 Extra arguments:
 -gcc_flags "-L${ProjectDir} -lSparrow -all_load -nolink -framework AVFoundation -framework OpenAL"
+
+
+Example:
+SPJuggler jug = this.Stage.Juggler;
+jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
+			
