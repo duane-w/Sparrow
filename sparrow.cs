@@ -464,19 +464,19 @@ interface SPEvent {
 interface SPEventDispatcher {
 	//- (void)addEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType             retainObject:(BOOL)retain;
 	[Internal, Export ("addEventListener:atObject:forType:")]
-	void RealAddEventListener (Selector listener, NSObject object1, string eventType, bool retain);
+	void _AddEventListener (Selector listener, NSObject object1, string eventType, bool retain);
 
 	//- (void)addEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType;
 	[Internal, Export ("addEventListener:atObject:forType:")]
-	void RealAddEventListener (Selector listener, NSObject object1, string eventType);
+	void _AddEventListener (Selector listener, NSObject object1, string eventType);
 
 	//- (void)removeEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType;
-	[Export ("removeEventListener:atObject:forType:")]
-	void RemoveEventListener (Selector listener, NSObject object1, string eventType);
+	[Internal, Export ("removeEventListener:atObject:forType:")]
+	void _RemoveEventListener (Selector listener, NSObject object1, string eventType);
 
 	//- (void)removeEventListenersAtObject:(id)object forType:(NSString*)eventType;
-	[Export ("removeEventListenersAtObject:forType:")]
-	void RemoveEventListenersAtObject (NSObject object1, string eventType);
+	[Internal, Export ("removeEventListenersAtObject:forType:")]
+	void _RemoveEventListenersAtObject (NSObject object1, string eventType);
 
 	//- (void)dispatchEvent:(SPEvent*)event;
 	[Export ("dispatchEvent:")]

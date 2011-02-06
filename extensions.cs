@@ -1,5 +1,7 @@
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
+using System;
+using System.Collections.Generic;
 
 namespace Sparrow
 {
@@ -7,27 +9,44 @@ namespace Sparrow
 	{
 		public const string EventTriggered = "triggered";
 	}
-
-
+	
+	public delegate void EventDispatch (SPTouchEvent e);
+	
 	public partial class SPEventDispatcher 
 	{
-		object AddEventListener (NSAction action, string evenType, bool retain)
+		Dictionary<EventDispatch,Dispatcher> dispatchObjects = new Dictionary<EventDispatch,Dispatcher>();
+		
+		public void AddEventListener (EventDispatch action, string eventType, bool retain)
 		{
-		   var dispatcher = new Dispatcher (action);
-		   //RealAddEventListener (Dispatcher.InvokeSelector, dispatcher, eventType, retain);
-		   return dispatcher;
+			var dispatcher = new Dispatcher (action);
+			_AddEventListener (Dispatcher.InvokeSelector, dispatcher, eventType, retain);
+			dispatchObjects.Add(action, dispatcher);
+		}
+		
+		public void RemoveEventListner (EventDispatch action, string eventType)
+		{
+			Dispatcher dispatcher = null;
+			if (dispatchObjects.TryGetValue (action, out dispatcher))
+			{
+				dispatchObjects.Remove (action);
+				_RemoveEventListener (Dispatcher.InvokeSelector, dispatcher, eventType);
+			}
 		}
 	}
-
-	[Register ("__SparrowClassDispatcher")]
-	class Dispatcher : NSObject {
-	   public static Selector InvokeSelector = new Selector ("invoke");
-	   NSAction action;
-	   [Export ("invoke")]
-	   public Dispatcher (NSAction action) { this.action = action; }
 	
-	   [Export ("apply")]
-	   [Preserve (Conditional = true)]
-	   public void Apply () { action (); }
+	[Register ("__SparrowClassDispatcher")]
+	class Dispatcher : SPEvent 
+	{
+		public static Selector InvokeSelector = new Selector ("invoke:");
+		EventDispatch Action;
+		public Dispatcher (EventDispatch action) { this.Action = action; }
+		
+		[Export ("invoke:")]
+		[Preserve (Conditional = true)]
+		public void Apply (SPTouchEvent e) 
+		{
+			Console.WriteLine("in invoke");
+			Action (e); 
+		}
 	}
 }
