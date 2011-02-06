@@ -16,6 +16,11 @@ namespace Sparrow
 	{
 		Dictionary<EventDispatch,Dispatcher> dispatchObjects = new Dictionary<EventDispatch,Dispatcher>();
 		
+		public void AddEventListener (EventDispatch action, string eventType)
+		{
+			AddEventListener (action, eventType, false);
+		}
+		
 		public void AddEventListener (EventDispatch action, string eventType, bool retain)
 		{
 			var dispatcher = new Dispatcher (action);
@@ -45,7 +50,6 @@ namespace Sparrow
 		[Preserve (Conditional = true)]
 		public void Apply (SPTouchEvent e) 
 		{
-			Console.WriteLine("in invoke");
 			Action (e); 
 		}
 	}
