@@ -463,12 +463,12 @@ interface SPEvent {
 [BaseType (typeof (NSObject))]
 interface SPEventDispatcher {
 	//- (void)addEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType             retainObject:(BOOL)retain;
-	[Export ("addEventListener:atObject:forType:")]
-	void AddEventListener (Selector listener, NSObject object1, string eventType, bool retain);
+	[Internal, Export ("addEventListener:atObject:forType:")]
+	void RealAddEventListener (Selector listener, NSObject object1, string eventType, bool retain);
 
 	//- (void)addEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType;
-	[Export ("addEventListener:atObject:forType:")]
-	void AddEventListener (Selector listener, NSObject object1, string eventType);
+	[Internal, Export ("addEventListener:atObject:forType:")]
+	void RealAddEventListener (Selector listener, NSObject object1, string eventType);
 
 	//- (void)removeEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType;
 	[Export ("removeEventListener:atObject:forType:")]
