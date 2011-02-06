@@ -11,3 +11,16 @@ Example:
 SPJuggler jug = this.Stage.Juggler;
 jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
 			
+
+image.AddEventListener (new Selector ("doTouch:"), this, SPEvents.Touch);
+
+		[Export ("doTouch:")]
+		void doTouch (SPTouchEvent e)
+		{
+			SPTouch[] allTouches = e.TouchesWithTarget ((SPDisplayObject)e.Target).ToArray<SPTouch> ();
+			foreach (SPTouch touch in allTouches)
+			{
+				if (touch.Phase == SPTouchPhase.Ended)
+				{
+					// touch has ended on this object
+
