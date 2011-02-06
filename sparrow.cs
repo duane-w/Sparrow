@@ -670,7 +670,7 @@ interface SPMovieClip {
 
 	//- (id)initWithFrames:(NSArray *)textures fps:(float)fps;
 	[Export ("initWithFrames:fps:")]
-	IntPtr Constructor (NSObject[] textures, float fps);
+	IntPtr Constructor (SPTexture[] textures, float fps);
 
 	[Static]
 	//+ (SPMovieClip *)movieWithFrame:(SPTexture *)texture fps:(float)fps;
@@ -680,7 +680,7 @@ interface SPMovieClip {
 	[Static]
 	//+ (SPMovieClip *)movieWithFrames:(NSArray *)textures fps:(float)fps;
 	[Export ("movieWithFrames:fps:")]
-	SPMovieClip  MovieWithFrames (NSObject[] textures, float fps);
+	SPMovieClip  MovieWithFrames (SPTexture[] textures, float fps);
 
 	//- (int)addFrame:(SPTexture *)texture;
 	[Export ("addFrame:")]
@@ -1361,7 +1361,7 @@ interface SPTextureAtlas {
 
 	//- (NSArray *)texturesStartingWith:(NSString *)name;
 	[Export ("texturesStartingWith:")]
-	NSObject[] TexturesStartingWith (string name);
+	SPTexture[] TexturesStartingWith (string name);
 
 	//- (void)addRegion:(SPRectangle *)region withName:(NSString *)name;
 	[Export ("addRegion:withName:")]
