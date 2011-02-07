@@ -12,15 +12,16 @@ SPJuggler jug = this.Stage.Juggler;
 jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
 			
 
-image.AddEventListener (new Selector ("doTouch:"), this, SPEvents.Touch);
-
-		[Export ("doTouch:")]
-		void doTouch (SPTouchEvent e)
+To add an event listner:
+image.AddEventListener (doTouch, SPEvents.Touch);
+To remove:
+image.RemoveEventListner (doTouch, SPEvents.Touch);
+---
+		void doTouch (SPEvent e)
 		{
-			SPTouch[] allTouches = e.TouchesWithTarget ((SPDisplayObject)e.Target).ToArray<SPTouch> ();
+			SPTouchEvent touchEvent = (SPTouchEvent)e;
+			SPTouch[] allTouches = touchEvent.TouchesWithTarget ((SPDisplayObject)e.Target).ToArray<SPTouch>();
 			foreach (SPTouch touch in allTouches)
 			{
 				if (touch.Phase == SPTouchPhase.Ended)
 				{
-					// touch has ended on this object
-

@@ -10,7 +10,7 @@ namespace Sparrow
 		public const string EventTriggered = "triggered";
 	}
 	
-	public delegate void EventDispatch (SPTouchEvent e);
+	public delegate void EventDispatch (SPEvent e);
 	
 	public partial class SPEventDispatcher 
 	{
@@ -48,7 +48,7 @@ namespace Sparrow
 		
 		[Export ("invoke:")]
 		[Preserve (Conditional = true)]
-		public void Apply (SPTouchEvent e) 
+		public void Apply (SPEvent e) 
 		{
 			Action (e); 
 		}
