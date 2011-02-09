@@ -2,10 +2,13 @@ MonoTouch bindings for Sparrow
 http://www.sparrow-framework.org/
 http://monotouch.net/
 
-included libSparrow.a is for iPhone simulator
-Extra arguments:
--gcc_flags "-L${ProjectDir} -lSparrow -all_load -nolink -framework AVFoundation -framework OpenAL"
+Hopefully this is obvious:
+libSparrow.a_iPhone
+libSparrow.a_simulator
 
+Extra arguments:
+These flags work for the device build:
+-gcc_flags "-L${ProjectDir} -lSparrow -all_load -framework CoreGraphics -framework OpenAL -framework OpenGLES -framework QuartzCore -ObjC"
 
 Example:
 SPJuggler jug = this.Stage.Juggler;
