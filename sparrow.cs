@@ -8,8 +8,8 @@ using MonoTouch.AVFoundation;
 
 namespace Sparrow 
 {
-	public delegate void SPTextureDrawingBlock (IntPtr ctx);
-	public delegate void SPDrawingBlock ();
+	//public delegate void SPTextureDrawingBlock (IntPtr ctx);
+	//public delegate void SPDrawingBlock ();
 
 [BaseType (typeof (SPSound))]
 interface SPALSound {
@@ -462,7 +462,7 @@ interface SPEvent {
 
 [BaseType (typeof (NSObject))]
 interface SPEventDispatcher {
-	//- (void)addEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType             retainObject:(BOOL)retain;
+	//- (void)addEventListener:(SEL)listener atObject:(id)object forType:(NSString*)eventType retainObject:(BOOL)retain;
 	[Internal, Export ("addEventListener:atObject:forType:")]
 	void _AddEventListener (Selector listener, NSObject object1, string eventType, bool retain);
 
@@ -1042,8 +1042,8 @@ interface SPRenderTexture {
 	void DrawObject (SPDisplayObject  object1);
 
 	//- (void)bundleDrawCalls:(SPDrawingBlock)block;
-	[Export ("bundleDrawCalls:")]
-	void BundleDrawCalls (SPDrawingBlock block);
+	//[Export ("bundleDrawCalls:")]
+	//void BundleDrawCalls (SPDrawingBlock block);
 
 	//- (void)clearWithColor:(uint)color alpha:(float)alpha;
 	[Export ("clearWithColor:alpha:")]
@@ -1271,12 +1271,12 @@ interface SPTextField {
 [BaseType (typeof (NSObject))]
 interface SPTexture {
 	//- (id)initWithWidth:(float)width height:(float)height draw:(SPTextureDrawingBlock)drawingBlock;
-	[Export ("initWithWidth:height:draw:")]
-	IntPtr Constructor (float width, float height, SPTextureDrawingBlock drawingBlock);
+	//[Export ("initWithWidth:height:draw:")]
+	//IntPtr Constructor (float width, float height, SPTextureDrawingBlock drawingBlock);
 
 	//- (id)initWithWidth:(float)width height:(float)height scale:(float)scale          colorSpace:(SPColorSpace)colorSpace draw:(SPTextureDrawingBlock)drawingBlock;
-	[Export ("initWithWidth:height:scale:colorSpacedraw:")]
-	IntPtr Constructor (float width, float height, float scale, SPColorSpace colorSpace, SPTextureDrawingBlock drawingBlock);
+	//[Export ("initWithWidth:height:scale:colorSpacedraw:")]
+	//IntPtr Constructor (float width, float height, float scale, SPColorSpace colorSpace, SPTextureDrawingBlock drawingBlock);
 
 	//- (id)initWithContentsOfFile:(NSString *)path;
 	[Export ("initWithContentsOfFile:")]
@@ -1300,10 +1300,10 @@ interface SPTexture {
 	[Export ("textureWithRegion:ofTexture:")]
 	SPTexture  TextureWithRegion (SPRectangle  region, SPTexture  texture);
 
-	[Static]
+	//[Static]
 	//+ (SPTexture *)textureWithWidth:(float)width height:(float)height draw:(SPTextureDrawingBlock)drawingBlock;
-	[Export ("textureWithWidth:height:draw:")]
-	SPTexture  TextureWithWidth (float width, float height, SPTextureDrawingBlock drawingBlock);
+	//[Export ("textureWithWidth:height:draw:")]
+	//SPTexture  TextureWithWidth (float width, float height, SPTextureDrawingBlock drawingBlock);
 
 	[Static]
 	//+ (SPTexture *)emptyTexture;
