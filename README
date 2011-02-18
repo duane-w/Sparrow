@@ -2,6 +2,14 @@ MonoTouch bindings for Sparrow
 http://www.sparrow-framework.org/
 http://monotouch.net/
 
+Whenever MonoDevelop regenerates the MainWindowIPhone.xib.designer.cs file you will get a compile error:
+MainWindowIPhone.xib.designer.cs(25,25): Error CS0246: The type or
+namespace name `SPView' could not be found. Are you missing a using
+directive or an assembly reference? (CS0246) (SparrowTest)
+
+To fix this do a compile, manually edit that file, add a using Sparrow, compile again.  How the XIB is definied MD
+cannot resolve the reference to the SPView class.
+
 Hopefully this is obvious:
 libSparrow.a_iPhone
 libSparrow.a_simulator
