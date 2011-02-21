@@ -56,7 +56,6 @@ namespace SparrowTest
 		    mBackButton.Visible = true;
 		}
 		
-		[Export ("onBackButtonTriggered:")]
 		void onBackButtonTriggered (SPEvent e)
 		{
 			mCurrentScene.RemoveFromParent ();
@@ -66,7 +65,6 @@ namespace SparrowTest
 			mMainMenu.Visible = true;
 		}
 		
-		[Export ("onAtlasButtonTriggered:")]
 		void onAtlasButtonTriggered (SPEvent e)
 		{
 			SPSprite scene = new AtlasScene();
