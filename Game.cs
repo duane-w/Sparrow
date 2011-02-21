@@ -10,6 +10,7 @@ namespace SparrowTest
 		SPSprite mMainMenu;
 		SPSprite mCurrentScene;
 		SPButton mBackButton;
+		SPButton atlasButton;
 		int mNumButtons = 0;
 			
 		public Game (IntPtr p) : base (p)
@@ -29,19 +30,17 @@ namespace SparrowTest
 				
 				SPTexture sceneButtonTexture = SPTexture.TextureWithContentsOfFile ("button_big.png");
 				
-				SPButton atlasButton = SPButton.ButtonWithUpState (sceneButtonTexture, "Texture Atlas");
-				atlasButton.AddEventListener (new Selector ("onAtlasButtonTriggered:"), this, SPEvents.ButtonTriggered);
-				addSceneButton (atlasButton);
-				
+				atlasButton = SPButton.ButtonWithUpState (sceneButtonTexture, "Texture Atlas");
+				atlasButton.AddEventListener (onAtlasButtonTriggered, SPEvents.ButtonTriggered);
+				addSceneButton (atlasButton);				
 				
 				SPTexture backButtonTexture = SPTexture.TextureWithContentsOfFile ("button_back.png");
 		        mBackButton = new SPButton (backButtonTexture, "back");
 		        mBackButton.Visible = false;
 		        mBackButton.X = (int)(Stage.Width - mBackButton.Width) / 2;
 		        mBackButton.Y = Stage.Height - mBackButton.Height + 1;
-		        mBackButton.AddEventListener (new Selector ("onBackButtonTriggered:"), this, SPEvents.ButtonTriggered); 
+				mBackButton.AddEventListener (onBackButtonTriggered, SPEvents.ButtonTriggered);
 		        AddChild (mBackButton);
-				
 							
 				SPJuggler jug = this.Stage.Juggler;
 				jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
