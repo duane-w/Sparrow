@@ -42,8 +42,8 @@ namespace SparrowTest
 				mBackButton.AddEventListener (onBackButtonTriggered, SPEvents.ButtonTriggered);
 		        AddChild (mBackButton);
 							
-				SPJuggler jug = this.Stage.Juggler;
-				jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
+//			SPJuggler jug = this.Stage.Juggler;
+//			jug.DelayInvocationAtTarget (this, 5.0).PerformSelector (new Selector ("onAtlasButtonTriggered:"), null, 0);
 			}
 		}
 		
