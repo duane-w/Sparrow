@@ -2,6 +2,12 @@ MonoTouch bindings for Sparrow
 http://www.sparrow-framework.org/
 http://monotouch.net/
 
+To generate sparrow.dll:
+/Developer/MonoTouch/usr/bin/btouch sparrow.cs -s:enum.cs --outdir=gen -ns=Sparrow --unsafe --sourceonly=genfiles
+gmcs -out:sparrow.dll `cat genfiles` extensions.cs  -unsafe -r:/Developer/MonoTouch/usr/lib/mono/2.1/monotouch.dll enum.cs -target:library
+
+I have not tried with MT 4.0, only MT 3.2.
+
 Whenever MonoDevelop regenerates the MainWindowIPhone.xib.designer.cs file you will get a compile error:
 MainWindowIPhone.xib.designer.cs(25,25): Error CS0246: The type or
 namespace name `SPView' could not be found. Are you missing a using
